@@ -2,6 +2,36 @@ import { isUrl } from '../utils/utils';
 
 const menuData = [
   {
+    name: '会话列表',
+    icon: 'message',
+    path: 'chats',
+  },
+  {
+    name: '访客列表',
+    icon: 'usergroup-add',
+    path: 'visitors',
+  },
+  {
+    name: '消息记录',
+    icon: 'calendar',
+    path: 'archives',
+  },
+  {
+    name: '留言记录',
+    icon: 'switcher',
+    path: 'tickets',
+  },
+  {
+    name: '客服管理',
+    icon: 'team',
+    path: 'agents',
+  },
+  {
+    name: '统计报表',
+    icon: 'area-chart',
+    path: 'reports',
+  },
+  {
     name: 'dashboard',
     icon: 'dashboard',
     path: 'dashboard',
