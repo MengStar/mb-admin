@@ -1,7 +1,6 @@
 import React from 'react';
 import PromiseRender from './PromiseRender';
 import { CURRENT } from './index';
-import { getToken } from '../../utils/authority';
 
 function isPromise(obj) {
   return (
@@ -20,53 +19,30 @@ function isPromise(obj) {
  * @param { 未通过的组件 no pass components } Exception
  */
 const checkPermissions = (authority, currentAuthority, target, Exception) => {
-  // token为空或者没有默认权限
-  if (!currentAuthority || !getToken()) {
-    return Exception;
-  }
   // 没有判定权限.默认查看所有
   // Retirement authority, return target;
   if (!authority) {
     return target;
   }
-  // array array 处理
-  if (Array.isArray(authority) || Array.isArray(currentAuthority)) {
-    console.log(1);
-    console.log(authority, currentAuthority);
-    for (const val of authority) {
-      if (currentAuthority.indexOf(val) >= 0) return target;
-
-    }
-    return Exception;
-  }
-
-  // string string 处理
-  if (typeof authority === 'string' && typeof currentAuthority === 'string') {
-    console.log(2);
-    if (authority === currentAuthority) {
-      return target;
-    }
-    return Exception;
-  }
-  // array string 处理
-  if (Array.isArray(authority) && typeof currentAuthority === 'string') {
-    console.log(3);
+  // 数组处理
+  if (Array.isArray(authority)) {
     if (authority.indexOf(currentAuthority) >= 0) {
       return target;
     }
     return Exception;
   }
-  // string array 处理
-  if (typeof authority === 'string' && Array.isArray(currentAuthority)) {
-    console.log(4);
-    if (currentAuthority.indexOf(authority) >= 0) {
+
+  // string 处理
+  if (typeof authority === 'string') {
+    if (authority === currentAuthority) {
       return target;
     }
     return Exception;
   }
+
   // Promise 处理
   if (isPromise(authority)) {
-    return <PromiseRender ok={target} error={Exception} promise={authority}/>;
+    return <PromiseRender ok={target} error={Exception} promise={authority} />;
   }
 
   // Function 处理

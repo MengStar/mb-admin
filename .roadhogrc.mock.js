@@ -77,8 +77,9 @@ const proxy = {
       res.send({
         status: 'ok',
         type,
-        roles: ['ROLE_ADMIN', 'ROLE_DEFAULT'],
-        token: 'MB-eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdGVkIjoxNTI2OTYxMDMxMTAyLCJleHAiOjE1MjY5OTcwMzEsInVzZXJuYW1lIjoic3RyaW5nIn0.X0oncN9ej-BEfPiMNsikQ0buUhpdThg3W4p6bhrUKFu8Uv6rcrDi9_lcqwTBV968vVmSX9OCcEP3S7i2cKKhow',
+        roles: 'ROLE_ADMIN',
+        token:
+          'MB-eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdGVkIjoxNTI2OTYxMDMxMTAyLCJleHAiOjE1MjY5OTcwMzEsInVzZXJuYW1lIjoic3RyaW5nIn0.X0oncN9ej-BEfPiMNsikQ0buUhpdThg3W4p6bhrUKFu8Uv6rcrDi9_lcqwTBV968vVmSX9OCcEP3S7i2cKKhow',
       });
       return;
     }
@@ -87,7 +88,8 @@ const proxy = {
         status: 'ok',
         type,
         roles: 'ROLE_DEFAULT',
-        token: 'MB-eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdGVkIjoxNTI2OTYxMDMxMTAyLCJleHAiOjE1MjY5OTcwMzEsInVzZXJuYW1lIjoic3RyaW5nIn0.X0oncN9ej-BEfPiMNsikQ0buUhpdThg3W4p6bhrUKFu8Uv6rcrDi9_lcqwTBV968vVmSX9OCcEP3S7i2cKKhow',
+        token:
+          'MB-eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdGVkIjoxNTI2OTYxMDMxMTAyLCJleHAiOjE1MjY5OTcwMzEsInVzZXJuYW1lIjoic3RyaW5nIn0.X0oncN9ej-BEfPiMNsikQ0buUhpdThg3W4p6bhrUKFu8Uv6rcrDi9_lcqwTBV968vVmSX9OCcEP3S7i2cKKhow',
       });
       return;
     }
