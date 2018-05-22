@@ -1,6 +1,6 @@
 import { routerRedux } from 'dva/router';
 import { fakeAccountLogin } from '../services/api';
-import { setAuthority } from '../utils/authority';
+import { setAuthority, setToken } from '../utils/authority';
 import { reloadAuthorized } from '../utils/Authorized';
 
 export default {
@@ -11,7 +11,7 @@ export default {
   },
 
   effects: {
-    *login({ payload }, { call, put }) {
+    * login({ payload }, { call, put }) {
       const response = yield call(fakeAccountLogin, payload);
       yield put({
         type: 'changeLoginStatus',
@@ -23,7 +23,7 @@ export default {
         yield put(routerRedux.push('/'));
       }
     },
-    *logout(_, { put, select }) {
+    * logout(_, { put, select }) {
       try {
         // get location pathname
         const urlParams = new URL(window.location.href);
@@ -36,7 +36,8 @@ export default {
           type: 'changeLoginStatus',
           payload: {
             status: false,
-            currentAuthority: 'guest',
+            roles: '',
+            token: '',
           },
         });
         reloadAuthorized();
@@ -47,7 +48,8 @@ export default {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
+      setAuthority(payload.roles);
+      setToken(payload.token);
       return {
         ...state,
         status: payload.status,
