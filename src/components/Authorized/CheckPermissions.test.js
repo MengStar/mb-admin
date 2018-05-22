@@ -23,7 +23,7 @@ describe('test CheckPermissions', () => {
     expect(checkPermissions(['user', 'admin'], 'user', target, error)).toEqual('ok');
   });
   it('Wrong Array permission authentication,currentAuthority error', () => {
-    expect(checkPermissions(['user', 'admin'], 'user,admin', target, error)).toEqual('error');
+    expect(checkPermissions(['user', 'admin'], 'guest', target, error)).toEqual('error');
   });
   it('Wrong Array permission authentication', () => {
     expect(checkPermissions(['user', 'admin'], 'guest', target, error)).toEqual('error');
