@@ -20,10 +20,8 @@ const renderAuthorize = currentAuthority => {
       CURRENT = currentAuthority();
     }
     if (currentAuthority.constructor.name === 'String') {
-      const currentAuthoritys = currentAuthority.split(',');
-      CURRENT = currentAuthoritys;
+      CURRENT = currentAuthority;
     }
-
   } else {
     CURRENT = 'NULL';
   }

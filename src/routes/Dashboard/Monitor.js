@@ -19,6 +19,7 @@ const havePermissionAsync = new Promise(resolve => {
   setTimeout(() => resolve(), 1000);
 });
 @Secured(havePermissionAsync)
+@Secured('ROLE_ADMIN')
 @connect(({ monitor, loading }) => ({
   monitor,
   loading: loading.models.monitor,

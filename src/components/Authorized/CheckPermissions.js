@@ -19,44 +19,27 @@ function isPromise(obj) {
  * @param { 未通过的组件 no pass components } Exception
  */
 const checkPermissions = (authority, currentAuthority, target, Exception) => {
-  if (!currentAuthority) {
-    return Exception;
-  }
   // 没有判定权限.默认查看所有
   // Retirement authority, return target;
   if (!authority) {
     return target;
   }
-  // array array 处理
-  if (Array.isArray(authority) || Array.isArray(currentAuthority)) {
-    for (const val of authority) {
-      if (currentAuthority.indexOf(val) >= 0) return target;
-    }
-    return Exception;
-  }
-
-  // string string 处理
-  if (typeof authority === 'string' && typeof currentAuthority === 'string') {
-    if (authority === currentAuthority) {
-      return target;
-    }
-    return Exception;
-  }
-  // array string 处理
-  if (Array.isArray(authority) && typeof currentAuthority === 'string') {
-    console.log(111111);
+  // 数组处理
+  if (Array.isArray(authority)) {
     if (authority.indexOf(currentAuthority) >= 0) {
       return target;
     }
     return Exception;
   }
-  // string array 处理
-  if (typeof authority === 'string' && Array.isArray(currentAuthority)) {
-    if (currentAuthority.indexOf(authority) >= 0) {
+
+  // string 处理
+  if (typeof authority === 'string') {
+    if (authority === currentAuthority) {
       return target;
     }
     return Exception;
   }
+
   // Promise 处理
   if (isPromise(authority)) {
     return <PromiseRender ok={target} error={Exception} promise={authority} />;
