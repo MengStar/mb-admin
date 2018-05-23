@@ -2,11 +2,194 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { connect } from 'dva';
 import { Row, Col, Card, List, Avatar } from 'antd';
-import ChatList from 'components/ChatList';
+import { ChatList } from 'components/Chats';
 import { Radar } from 'components/Charts';
 import PageHeaderLayout from '../layouts/PageHeaderLayout';
 
 import styles from './chats.less';
+
+const initData = [
+  {
+    gender: 'male',
+    name: { title: 'mr', first: 'etienne', last: 'french' },
+    email: 'etienne.french@example.com',
+    nat: 'CA',
+  },
+  {
+    gender: 'female',
+    name: { title: 'mrs', first: 'deborah', last: 'jensen' },
+    email: 'deborah.jensen@example.com',
+    nat: 'IE',
+  },
+  {
+    gender: 'male',
+    name: { title: 'monsieur', first: 'dorian', last: 'garcia' },
+    email: 'dorian.garcia@example.com',
+    nat: 'CH',
+  },
+  {
+    gender: 'female',
+    name: { title: 'miss', first: 'hanna', last: 'edwards' },
+    email: 'hanna.edwards@example.com',
+    nat: 'GB',
+  },
+  {
+    gender: 'male',
+    name: { title: 'mr', first: 'dennis', last: 'lawson' },
+    email: 'dennis.lawson@example.com',
+    nat: 'US',
+  },
+  {
+    gender: 'male',
+    name: { title: 'mr', first: 'etienne', last: 'french' },
+    email: 'etienne.french@example.com',
+    nat: 'CA',
+  },
+  {
+    gender: 'female',
+    name: { title: 'mrs', first: 'deborah', last: 'jensen' },
+    email: 'deborah.jensen@example.com',
+    nat: 'IE',
+  },
+  {
+    gender: 'male',
+    name: { title: 'monsieur', first: 'dorian', last: 'garcia' },
+    email: 'dorian.garcia@example.com',
+    nat: 'CH',
+  },
+  {
+    gender: 'female',
+    name: { title: 'miss', first: 'hanna', last: 'edwards' },
+    email: 'hanna.edwards@example.com',
+    nat: 'GB',
+  },
+  {
+    gender: 'male',
+    name: { title: 'mr', first: 'dennis', last: 'lawson' },
+    email: 'dennis.lawson@example.com',
+    nat: 'US',
+  },
+  {
+    gender: 'male',
+    name: { title: 'mr', first: 'etienne', last: 'french' },
+    email: 'etienne.french@example.com',
+    nat: 'CA',
+  },
+  {
+    gender: 'female',
+    name: { title: 'mrs', first: 'deborah', last: 'jensen' },
+    email: 'deborah.jensen@example.com',
+    nat: 'IE',
+  },
+  {
+    gender: 'male',
+    name: { title: 'monsieur', first: 'dorian', last: 'garcia' },
+    email: 'dorian.garcia@example.com',
+    nat: 'CH',
+  },
+  {
+    gender: 'female',
+    name: { title: 'miss', first: 'hanna', last: 'edwards' },
+    email: 'hanna.edwards@example.com',
+    nat: 'GB',
+  },
+  {
+    gender: 'male',
+    name: { title: 'mr', first: 'dennis', last: 'lawson' },
+    email: 'dennis.lawson@example.com',
+    nat: 'US',
+  },
+  {
+    gender: 'male',
+    name: { title: 'mr', first: 'etienne', last: 'french' },
+    email: 'etienne.french@example.com',
+    nat: 'CA',
+  },
+  {
+    gender: 'female',
+    name: { title: 'mrs', first: 'deborah', last: 'jensen' },
+    email: 'deborah.jensen@example.com',
+    nat: 'IE',
+  },
+  {
+    gender: 'male',
+    name: { title: 'monsieur', first: 'dorian', last: 'garcia' },
+    email: 'dorian.garcia@example.com',
+    nat: 'CH',
+  },
+  {
+    gender: 'female',
+    name: { title: 'miss', first: 'hanna', last: 'edwards' },
+    email: 'hanna.edwards@example.com',
+    nat: 'GB',
+  },
+  {
+    gender: 'male',
+    name: { title: 'mr', first: 'dennis', last: 'lawson' },
+    email: 'dennis.lawson@example.com',
+    nat: 'US',
+  },
+  {
+    gender: 'male',
+    name: { title: 'mr', first: 'etienne', last: 'french' },
+    email: 'etienne.french@example.com',
+    nat: 'CA',
+  },
+  {
+    gender: 'female',
+    name: { title: 'mrs', first: 'deborah', last: 'jensen' },
+    email: 'deborah.jensen@example.com',
+    nat: 'IE',
+  },
+  {
+    gender: 'male',
+    name: { title: 'monsieur', first: 'dorian', last: 'garcia' },
+    email: 'dorian.garcia@example.com',
+    nat: 'CH',
+  },
+  {
+    gender: 'female',
+    name: { title: 'miss', first: 'hanna', last: 'edwards' },
+    email: 'hanna.edwards@example.com',
+    nat: 'GB',
+  },
+  {
+    gender: 'male',
+    name: { title: 'mr', first: 'dennis', last: 'lawson' },
+    email: 'dennis.lawson@example.com',
+    nat: 'US',
+  },
+  {
+    gender: 'male',
+    name: { title: 'mr', first: 'etienne', last: 'french' },
+    email: 'etienne.french@example.com',
+    nat: 'CA',
+  },
+  {
+    gender: 'female',
+    name: { title: 'mrs', first: 'deborah', last: 'jensen' },
+    email: 'deborah.jensen@example.com',
+    nat: 'IE',
+  },
+  {
+    gender: 'male',
+    name: { title: 'monsieur', first: 'dorian', last: 'garcia' },
+    email: 'dorian.garcia@example.com',
+    nat: 'CH',
+  },
+  {
+    gender: 'female',
+    name: { title: 'miss', first: 'hanna', last: 'edwards' },
+    email: 'hanna.edwards@example.com',
+    nat: 'GB',
+  },
+  {
+    gender: 'male',
+    name: { title: 'mr', first: 'dennis', last: 'lawson' },
+    email: 'dennis.lawson@example.com',
+    nat: 'US',
+  },
+];
 
 @connect(({ project, activities, chart, loading }) => ({
   project,
@@ -119,7 +302,7 @@ export default class ChatsPage extends PureComponent {
               title="会话列表"
               loading={activitiesLoading}
             >
-              <ChatList />
+              <ChatList initData={initData} />
             </Card>
           </Col>
           <Col xl={18} lg={24} md={24} sm={24} xs={24}>
