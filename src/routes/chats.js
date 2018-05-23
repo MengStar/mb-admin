@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import moment from 'moment';
 import { connect } from 'dva';
 import { Row, Col, Card, List, Avatar } from 'antd';
-import { ChatList } from 'components/Chats';
+import { ChatMenu } from 'components/Chats';
 import { Radar } from 'components/Charts';
 import PageHeaderLayout from '../layouts/PageHeaderLayout';
 
@@ -302,14 +302,14 @@ export default class ChatsPage extends PureComponent {
               title="会话列表"
               loading={activitiesLoading}
             >
-              <ChatList initData={initData} />
+              <ChatMenu initData={initData} />
             </Card>
           </Col>
           <Col xl={18} lg={24} md={24} sm={24} xs={24}>
             <Card
               style={{ marginBottom: 24 }}
               bordered={false}
-              title="XX 指数"
+              title={<div>会话头部</div>}
               loading={radarData.length === 0}
             >
               <div className={styles.chart}>
