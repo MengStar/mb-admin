@@ -12,6 +12,7 @@
     }
   }
 }
+
 .avatar {
   height: 40px;
   width: 40px;
@@ -23,13 +24,25 @@
   width: 100%;
   text-align: center;
 }
+
 .name {
   position: absolute;
   top: -8px;
   left: 72px;
 }
+
 .msg {
   position: absolute;
   top: 13px;
   left: 72px;
+  width: 180px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.time {
+  position: absolute;
+  top: -8px;
+  right: 24px;
+  font-size: 13px;
 }

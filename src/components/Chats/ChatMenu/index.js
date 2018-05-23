@@ -48,6 +48,7 @@ export default class ChatMenu extends React.Component {
                 />
                 <h3 className={styles.name}>{item.name.first}</h3>
                 <p className={styles.msg}>{item.email}</p>
+                <p className={styles.time}>11:11</p>
               </Menu.Item>
             ))}
             {loading &&
