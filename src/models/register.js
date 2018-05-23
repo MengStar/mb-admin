@@ -1,5 +1,6 @@
-import { fakeRegister } from '../services/api';
-import { setAuthority } from '../utils/authority';
+import { routerRedux } from 'dva/router';
+import { accountRegister } from '../services/api';
+import { setAuthority, setToken } from '../utils/authority';
 import { reloadAuthorized } from '../utils/Authorized';
 
 export default {
@@ -11,21 +12,27 @@ export default {
 
   effects: {
     *submit(_, { call, put }) {
-      const response = yield call(fakeRegister);
+      const response = yield call(accountRegister);
       yield put({
         type: 'registerHandle',
         payload: response,
       });
+      // register successfully
+      if (response.code === 1) {
+        reloadAuthorized();
+        yield put(routerRedux.push('/'));
+      }
     },
   },
 
   reducers: {
     registerHandle(state, { payload }) {
-      setAuthority('user');
+      setAuthority(payload.role);
+      setToken(payload.token);
       reloadAuthorized();
       return {
         ...state,
-        status: payload.status,
+        status: payload.code === 1,
       };
     },
   },

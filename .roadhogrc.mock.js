@@ -71,36 +71,62 @@ const proxy = {
   'GET /api/fake_chart_data': getFakeChartData,
   'GET /api/profile/basic': getProfileBasicData,
   'GET /api/profile/advanced': getProfileAdvancedData,
-  'POST /api/login/account': (req, res) => {
+  'POST /api/auth/login/account': (req, res) => {
     const { password, userName, type } = req.body;
     if (password === '888888' && userName === 'admin') {
       res.send({
-        status: 'ok',
-        type,
-        roles: 'ROLE_ADMIN',
+        code: 1,
+        msg: '登陆成功',
+        username: 'admin',
+        nickname: 'admin8',
+        main: true,
+        mainUsername: null,
+        role: 'ROLE_ADMIN',
         token:
-          'MB-eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdGVkIjoxNTI2OTYxMDMxMTAyLCJleHAiOjE1MjY5OTcwMzEsInVzZXJuYW1lIjoic3RyaW5nIn0.X0oncN9ej-BEfPiMNsikQ0buUhpdThg3W4p6bhrUKFu8Uv6rcrDi9_lcqwTBV968vVmSX9OCcEP3S7i2cKKhow',
+          'MB-eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdGVkIjoxNTI3MDM5MTk2OTYyLCJleHAiOjE1MjcwNzUxOTYsInVzZXJuYW1lIjoic3RyaW5nIn0.FFNf7JcbY-33-IadeAmjJ4v0npVPRukjGDbptfDDthS54FxdXshD5mbXpURrSMBj7kOq1YnAvrzt_qrfczcB3g',
+        type,
       });
       return;
     }
     if (password === '123456' && userName === 'user') {
       res.send({
-        status: 'ok',
-        type,
-        roles: 'ROLE_DEFAULT',
+        code: 1,
+        msg: '登陆成功',
+        username: 'user',
+        nickname: 'user1',
+        main: true,
+        mainUsername: null,
+        role: 'ROLE_DEFAULT',
         token:
-          'MB-eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdGVkIjoxNTI2OTYxMDMxMTAyLCJleHAiOjE1MjY5OTcwMzEsInVzZXJuYW1lIjoic3RyaW5nIn0.X0oncN9ej-BEfPiMNsikQ0buUhpdThg3W4p6bhrUKFu8Uv6rcrDi9_lcqwTBV968vVmSX9OCcEP3S7i2cKKhow',
+          'MB-eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdGVkIjoxNTI3MDM5MTk2OTYyLCJleHAiOjE1MjcwNzUxOTYsInVzZXJuYW1lIjoic3RyaW5nIn0.FFNf7JcbY-33-IadeAmjJ4v0npVPRukjGDbptfDDthS54FxdXshD5mbXpURrSMBj7kOq1YnAvrzt_qrfczcB3g',
+        type,
       });
       return;
     }
     res.send({
-      status: 'error',
+      code: -1,
+      msg: '密码错误',
+      username: null,
+      nickname: null,
+      main: false,
+      mainUsername: null,
+      role: '',
+      token: '',
       type,
-      roles: 'guest',
     });
   },
-  'POST /api/register': (req, res) => {
-    res.send({ status: 'ok', currentAuthority: 'user' });
+  'POST /api/auth/register/account': (req, res) => {
+    res.send({
+      code: 1,
+      msg: '登陆成功',
+      username: 'user',
+      nickname: 'user1',
+      main: true,
+      mainUsername: null,
+      role: 'ROLE_DEFAULT',
+      token:
+        'MB-eyJhbGciOiJIUzUxMiJ9.eyJjcmVhdGVkIjoxNTI3MDM5MTk2OTYyLCJleHAiOjE1MjcwNzUxOTYsInVzZXJuYW1lIjoic3RyaW5nIn0.FFNf7JcbY-33-IadeAmjJ4v0npVPRukjGDbptfDDthS54FxdXshD5mbXpURrSMBj7kOq1YnAvrzt_qrfczcB3g',
+    });
   },
   'GET /api/notices': getNotices,
   'GET /api/500': (req, res) => {
