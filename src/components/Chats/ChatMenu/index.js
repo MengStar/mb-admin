@@ -42,8 +42,12 @@ export default class ChatMenu extends React.Component {
           >
             {initData.map(item => (
               <Menu.Item key={item.id}>
-                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-                {item.email}
+                <Avatar
+                  className={styles.avatar}
+                  src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                />
+                <h3 className={styles.name}>{item.name.first}</h3>
+                <p className={styles.msg}>{item.email}</p>
               </Menu.Item>
             ))}
             {loading &&
