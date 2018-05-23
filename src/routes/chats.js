@@ -294,7 +294,7 @@ export default class ChatsPage extends PureComponent {
     return (
       <PageHeaderLayout content={pageHeaderContent} extraContent={extraContent}>
         <Row gutter={24}>
-          <Col xl={6} lg={24} md={24} sm={24} xs={24}>
+          <Col xl={6} lg={8} md={10} sm={24} xs={24}>
             <Card
               bodyStyle={{ padding: 0 }}
               bordered={false}
@@ -305,7 +305,7 @@ export default class ChatsPage extends PureComponent {
               <ChatMenu initData={initData} />
             </Card>
           </Col>
-          <Col xl={18} lg={24} md={24} sm={24} xs={24}>
+          <Col xl={18} lg={16} md={14} sm={0} xs={24}>
             <Card
               style={{ marginBottom: 24 }}
               bordered={false}
